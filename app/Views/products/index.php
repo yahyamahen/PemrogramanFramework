@@ -29,7 +29,13 @@
                   foreach ($produk as $data) : ?>
                      <tr style="vertical-align: middle;">
                         <th class="text-center" scope="row"><?= $i; ?></th>
-                        <td><img style="width:100%;" src="images/<?= $data['foto_produk'] ?>" alt=""></td>
+                        <td>
+                           <?php if ($data['foto_produk'] == 'No_Image_Available.jpg') : ?>
+                              <img style="width:100%;" src="images/<?= $data['foto_produk'] ?>" alt="<?= $data['foto_produk'] ?>">
+                           <?php else : ?>
+                              <img style="width:100%;" src="images/<?= $data['slug'] ?>/<?= $data['foto_produk'] ?>" alt="">
+                           <?php endif; ?>
+                        </td>
                         <td><?= $data['nama_produk'] ?></td>
                         <td align="center"><?= $data['stok'] ?></td>
                         <td align="right">Rp. <?= number_format($data['harga'], 0, ".", ".") ?></td>

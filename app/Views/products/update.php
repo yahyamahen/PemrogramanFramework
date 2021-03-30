@@ -5,9 +5,10 @@
    <div class="row">
       <div class="col-md-8">
          <h2 class="my-3">Ubah Data Barang</h2>
-         <form action="/products/update_proses/<?= $produk['id']; ?>" method="POST">
+         <form action="/products/update_proses/<?= $produk['id']; ?>" method="POST" enctype="multipart/form-data">
             <?= csrf_field(); ?>
             <input type="hidden" name="slug" value="<?= $produk['slug']; ?>">
+            <input type="hidden" name="foto_produk_lama" value="<?= $produk['foto_produk']; ?>">
             <div class="row mb-3">
                <label for="nama_produk" class="col-sm-2 col-form-label">Nama Produk</label>
                <div class="col-sm-10">
@@ -31,8 +32,20 @@
             </div>
             <div class="row mb-3">
                <label for="foto_produk" class="col-sm-2 col-form-label">Foto Produk</label>
-               <div class="col-sm-10">
-                  <input type="text" class="form-control" id="foto_produk" name="foto_produk" value="<?= (old('foto_produk')) ? old('foto_produk') : $produk['foto_produk'] ?>">
+               <div class="col-sm-2">
+                  <?php if ($produk['foto_produk'] == 'No_Image_Available.jpg') : ?>
+                     <img src="/images/No_Image_Available.jpg" class="img-thumbnail img_preview" alt="">
+                  <?php else : ?>
+                     <img src="/images/<?= $produk['slug'] ?>/<?= $produk['foto_produk'] ?>" class="img-thumbnail img_preview" alt="">
+                  <?php endif; ?>
+               </div>
+               <div class="col-sm-8">
+                  <div class="">
+                     <input class="form-control <?= ($validation->hasError('foto_produk')) ? 'is-invalid' : ''; ?>" type="file" id="foto_produk" name="foto_produk" onchange="previewImg();">
+                     <div class="invalid-feedback">
+                        <?= $validation->getError('foto_produk') ?>
+                     </div>
+                  </div>
                </div>
             </div>
             <button type="submit" class="btn btn-primary" name="submitBarang">Update Barang</button>

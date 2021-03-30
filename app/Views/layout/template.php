@@ -51,6 +51,22 @@
       });
    </script>
 
+   <script>
+      function previewImg() {
+         const foto_produk = document.querySelector('#foto_produk');
+         // const foto_produk_label = document.querySelector('#custom_file_label');
+         const img_preview = document.querySelector('.img_preview');
+
+         // foto_produk_label.textContent = foto_produk.files[0].name;
+
+         const file_foto_produk = new FileReader();
+         file_foto_produk.readAsDataURL(foto_produk.files[0]);
+
+         file_foto_produk.onload = function(e) {
+            img_preview.src = e.target.result;
+         }
+      }
+   </script>
    <!-- Option 2: Separate Popper and Bootstrap JS -->
    <!--
    <script script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>

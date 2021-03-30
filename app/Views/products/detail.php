@@ -9,7 +9,11 @@
          <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
                <div class="col-md-4 overflow-hidden m-auto">
-                  <img class="w-100" src="/images/<?= $produk['foto_produk'] ?>" alt="...">
+                  <?php if ($produk['foto_produk'] == 'No_Image_Available.jpg') : ?>
+                     <img class="w-100" src="/images/<?= $produk['foto_produk'] ?>" alt="<?= $produk['foto_produk'] ?>">
+                  <?php else : ?>
+                     <img class="w-100" src="/images/<?= $produk['slug'] ?>/<?= $produk['foto_produk'] ?>" alt="images/<?= $produk['slug'] ?>/<?= $produk['foto_produk'] ?>">
+                  <?php endif; ?>
                </div>
                <div class="col-md-8">
                   <div class="card-body">
