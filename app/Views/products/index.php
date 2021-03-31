@@ -13,12 +13,12 @@
             </div>
          <?php endif; ?>
          <div class="table-responsive">
-            <table class="table">
+            <table class="table" id="myTable">
                <thead>
                   <tr class="text-center">
                      <th scope="col" width="2%">No.</th>
-                     <th scope="col" width="8%">Sampul</th>
-                     <th scope="col" width="40%">Judul</th>
+                     <th scope="col" width="8%"></th>
+                     <th scope="col" width="40%">Nama Produk</th>
                      <th scope="col" width="5%">Stok</th>
                      <th scope="col" width="15%">Harga</th>
                      <th scope="col" width="15%">Aksi</th>
