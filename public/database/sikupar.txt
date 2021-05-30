@@ -1,0 +1,23 @@
+CREATE OR REPLACE TABLE destinasi (
+	id 			INT 		PRIMARY KEY 	AUTO_INCREMENT 	NOT NULL,
+	kategori		VARCHAR(128)					NOT NULL,
+	nama_destinasi		VARCHAR(512) 					NOT NULL,
+	alamat_destinasi	VARCHAR(512)					NULL,
+	foto_destinasi		VARCHAR(512)					NULL,
+	harga			INT						NULL,
+	kontak			VARCHAR(15)					NULL,
+	email			VARCHAR(128)					NULL,
+	instagram		VARCHAR(128)					NULL,
+	facebook		VARCHAR(128)					NULL,
+	deskripsi		VARCHAR(1024)					NULL,
+	koordinat		VARCHAR(255)					NULL,
+	slug			VARCHAR(255)					NULL
+);
+
+CREATE OR REPLACE TABLE USER (
+	id 			INT 		PRIMARY KEY 	AUTO_INCREMENT  NOT NULL,
+	username		VARCHAR(255)					NOT NULL,
+	PASSWORD 		VARCHAR(255)					NOT NULL,
+	email			VARCHAR(255)					NULL,
+	notelp			VARCHAR(15)					NULL
+);
