@@ -17,19 +17,13 @@
          <li class="nav-item">
             <a class="nav-link active" href="<?= base_url('/destination') ?>">
                <span data-feather="map"></span>
-               Wisata <span class="sr-only">(current)</span>
+               Destinasi <span class="sr-only">(current)</span>
             </a>
          </li>
          <li class="nav-item">
-            <a class="nav-link" href="/destination">
-               <span data-feather="shopping-bag"></span>
-               Kuliner
-            </a>
-         </li>
-         <li class="nav-item">
-            <a class="nav-link" href="/pages/contact">
-               <span data-feather="phone"></span>
-               Kontak
+            <a class="nav-link" href="/pages/index">
+               <span data-feather="menu"></span>
+               Web Utama
             </a>
          </li>
       </ul>

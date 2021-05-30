@@ -119,6 +119,13 @@ class Destination extends BaseController
             'slug' => $slug,
             'kategori' => $this->request->getVar('kategori'),
             'harga' => $this->request->getVar('harga'),
+            'kontak' => $this->request->getVar('kontak'),
+            'email' => $this->request->getVar('email'),
+            'instagram' => $this->request->getVar('instagram'),
+            'facebook' => $this->request->getVar('facebook'),
+            'alamat_destinasi' => $this->request->getVar('alamat_destinasi'),
+            'koordinat' => $this->request->getVar('altitude') . "," . $this->request->getVar('longtitude'),
+            'deskripsi' => $this->request->getVar('deskripsi'),
             'foto_destinasi' => $namaFotoDestinasi
          ]
       );
@@ -188,12 +195,12 @@ class Destination extends BaseController
             ]
          ],
          'foto_destinasi' => [
-            'rules' => 'max_size[foto_destinasi, 4096]|is_image[foto_destinasi]|mime_in[foto_destinasi,image/png, image/jpg, image/jpeg]',
+            'rules' => 'max_size[foto_destinasi, 4096]|is_image[foto_destinasi]|mime_in[foto_destinasi,image/jpg,image/png,image/jpeg]',
             'errors' => [
                // 'uploaded' => 'Pilih foto destinasi terlebih dahulu',
                'max_size' => 'Ukuran gambar melebihi 4096kb',
-               'is_image' => 'File yang diupload harus gambar',
-               'mime_in' => 'File yang diupload harus gambar 2'
+               'is_image' => 'File yang diupload bukan gambar',
+               'mime_in' => 'File yang diupload harus gambar'
             ]
          ]
       ])) {
@@ -239,6 +246,13 @@ class Destination extends BaseController
             'slug' => $slug,
             'kategori' => $this->request->getVar('kategori'),
             'harga' => $this->request->getVar('harga'),
+            'kontak' => $this->request->getVar('kontak'),
+            'email' => $this->request->getVar('email'),
+            'instagram' => $this->request->getVar('instagram'),
+            'facebook' => $this->request->getVar('facebook'),
+            'alamat_destinasi' => $this->request->getVar('alamat_destinasi'),
+            'koordinat' => $this->request->getVar('altitude') . "," . $this->request->getVar('longtitude'),
+            'deskripsi' => $this->request->getVar('deskripsi'),
             'foto_destinasi' => $namaFotoDestinasi
          ]
       );

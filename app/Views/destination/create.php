@@ -22,6 +22,7 @@
                   <select class="form-control" id="kategori" name="kategori" min="1" step="1" value="<?= old('kategori'); ?>">
                      <option value="Wisata">Wisata</option>
                      <option value="Kuliner">Kuliner</option>
+                     <option value="Landmark">Landmark</option>
                      <option value="Pusat Oleh-Oleh">Pusat Oleh-Oleh</option>
                   </select>
                </div>
@@ -35,8 +36,61 @@
                   </div>
                </div>
             </div>
+
             <div class="row mb-3">
-               <label for="foto_destinasi" class="col-sm-2 col-form-label">Foto Produk</label>
+               <div class="col-md-2">
+                  <label for="kontak" class="col-sm-2 col-form-label ml-n3">Kontak</label>
+               </div>
+               <div class="col-md-5 input-group mb-3">
+                  <div class="input-group-append">
+                     <span class="input-group-text" id="basic-addon2">+62</span>
+                  </div>
+                  <input type="number" class="form-control" placeholder="8XXXXXXX" id="kontak" name="kontak" min="0" step="1" value="<?= old('kontak'); ?>">
+               </div>
+               <div class="col-md-5 input-group mb-3">
+                  <input type="email" class="form-control" placeholder="Email" id="email" name="email" value="<?= old('email'); ?>">
+               </div>
+            </div>
+
+            <div class="row mb-3 mt-n4">
+               <div class="col-md-2">
+               </div>
+               <div class="col-md-5 input-group mb-3">
+                  <input type="text" class="form-control" placeholder="@Instagram" id="instagram" name="instagram" value="<?= old('instagram'); ?>">
+               </div>
+               <div class="col-md-5 input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Facebook" id="facebook" name="facebook" value="<?= old('facebook'); ?>">
+               </div>
+            </div>
+
+            <div class="row mb-3">
+               <label for="alamat_destinasi" class="col-sm-2 col-form-label mt-n2">Alamat Destinasi</label>
+               <div class="col-sm-10">
+                  <input type="text" class="form-control <?= ($validation->hasError('alamat_destinasi')) ? 'is-invalid' : ''; ?>" id="alamat_destinasi" name="alamat_destinasi" autofocus value="<?= old('alamat_destinasi'); ?>">
+               </div>
+            </div>
+
+            <div class="row mb-3">
+               <div class="col-md-2">
+                  <label class="col-sm-2 col-form-label mt-n2 ml-n3">Altidude, Longtitude</label>
+               </div>
+               <div class="col-md-5">
+                  <input type="text" placeholder="Altidude" class="form-control <?= ($validation->hasError('altitude')) ? 'is-invalid' : ''; ?>" id="altitude" name="altitude" autofocus value="<?= old('altitude'); ?>">
+               </div>
+               <div class="col-md-5">
+                  <input type="text" placeholder="Longtitude" class="form-control <?= ($validation->hasError('longtitude')) ? 'is-invalid' : ''; ?>" id="longtitude" name="longtitude" autofocus value="<?= old('longtitude'); ?>">
+               </div>
+            </div>
+
+            <div class="row mb-3">
+               <label for="deskripsi" class="col-sm-2 col-form-label mt-n2">Deskripsi</label>
+               <div class="col-sm-10">
+                  <textarea class="form-control" id="deskripsi" rows="3" <?= ($validation->hasError('deskripsi')) ? 'is-invalid' : ''; ?>" id="deskripsi" name="deskripsi" autofocus value="<?= old('deskripsi'); ?>"></textarea>
+               </div>
+            </div>
+
+            <div class="row mb-3">
+               <label for="foto_destinasi" class="col-sm-2 col-form-label">Foto Destinasi</label>
                <div class="col-sm-2">
                   <img src="/images/No_Image_Available.jpg" class="img-thumbnail img_preview" alt="">
                </div>
@@ -49,7 +103,7 @@
                   </div>
                </div>
             </div>
-            <button type="submit" class="btn btn-primary" name="submitDestinasi">Tambah Destinasi</button>
+            <button type="submit" class="btn btn-success float-right" name="submitDestinasi">Tambah Destinasi</button>
          </form>
       </div>
    </div>

@@ -7,16 +7,24 @@ class Pages extends BaseController
    public function index()
    {
       $data = [
-         'title' => 'Home | Toko barokah',
+         'title' => 'Home | SIKUPAR',
       ];
-      return view('pages/home', $data);
+      return view('pages/index', $data);
    }
 
-   public function contact()
+   public function list()
    {
       $data = [
-         'title' => 'Contact | Toko barokah'
+         'title' => 'Destinations | SIKUPAR'
       ];
-      return view('pages/contact', $data);
+      return view('pages/list', $data);
+   }
+
+   public function meet()
+   {
+      $data = [
+         'title' => 'Destinations | SIKUPAR'
+      ];
+      return view('pages/meet', $data);
    }
 }
