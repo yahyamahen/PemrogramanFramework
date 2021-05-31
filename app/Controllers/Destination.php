@@ -119,12 +119,13 @@ class Destination extends BaseController
             'slug' => $slug,
             'kategori' => $this->request->getVar('kategori'),
             'harga' => $this->request->getVar('harga'),
-            'kontak' => $this->request->getVar('kontak'),
+            'kontak' => '62' . $this->request->getVar('kontak'),
             'email' => $this->request->getVar('email'),
             'instagram' => $this->request->getVar('instagram'),
             'facebook' => $this->request->getVar('facebook'),
             'alamat_destinasi' => $this->request->getVar('alamat_destinasi'),
             'koordinat' => $this->request->getVar('altitude') . "," . $this->request->getVar('longtitude'),
+            'iframe_link' => $this->request->getVar('iframe_link'),
             'deskripsi' => $this->request->getVar('deskripsi'),
             'foto_destinasi' => $namaFotoDestinasi
          ]
@@ -246,12 +247,13 @@ class Destination extends BaseController
             'slug' => $slug,
             'kategori' => $this->request->getVar('kategori'),
             'harga' => $this->request->getVar('harga'),
-            'kontak' => $this->request->getVar('kontak'),
+            'kontak' => '62' . $this->request->getVar('kontak'),
             'email' => $this->request->getVar('email'),
             'instagram' => $this->request->getVar('instagram'),
             'facebook' => $this->request->getVar('facebook'),
             'alamat_destinasi' => $this->request->getVar('alamat_destinasi'),
             'koordinat' => $this->request->getVar('altitude') . "," . $this->request->getVar('longtitude'),
+            'iframe_link' => $this->request->getVar('iframe_link'),
             'deskripsi' => $this->request->getVar('deskripsi'),
             'foto_destinasi' => $namaFotoDestinasi
          ]

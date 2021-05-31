@@ -45,7 +45,8 @@
                   <div class="input-group-append">
                      <span class="input-group-text" id="basic-addon2">+62</span>
                   </div>
-                  <input type="number" class="form-control" placeholder="8XXXXXXX" id="kontak" name="kontak" min="0" step="1" value="<?= (old('kontak')) ? old('kontak') : $destinasi['kontak'] ?>">
+                  <?php $kontak = explode('62', $destinasi['kontak'], 2) ?>
+                  <input type="number" class="form-control" placeholder="8XXXXXXX" id="kontak" name="kontak" min="0" step="1" value="<?= (old('kontak')) ? old('kontak') : $kontak[1] ?>">
                </div>
                <div class="col-md-5 input-group mb-3">
                   <input type="email" class="form-control" placeholder="Email" id="email" name="email" value="<?= (old('email')) ? old('email') : $destinasi['email'] ?>">
@@ -85,6 +86,20 @@
             </div>
 
             <div class="row mb-3">
+               <label for="iframe_link" class="col-sm-2 col-form-label mt-n2">Link Frame Maps</label>
+               <div class="col-sm-10">
+                  <input type="text" class="form-control <?= ($validation->hasError('iframe_link')) ? 'is-invalid' : ''; ?>" id="iframe_link" name="iframe_link" autofocus value="<?= (old('iframe_link')) ? old('iframe_link') : $destinasi['iframe_link'] ?>">
+               </div>
+            </div>
+
+            <div class="row mb-3">
+               <label for="deskripsi" class="col-sm-2 col-form-label mt-n2">Deskripsi</label>
+               <div class="col-sm-10">
+                  <textarea class="form-control" id="deskripsi" rows="3" <?= ($validation->hasError('deskripsi')) ? 'is-invalid' : ''; ?>" id="deskripsi" name="deskripsi" autofocus value="<?= (old('deskripsi')) ? old('deskripsi') : $destinasi['deskripsi'] ?>"><?= $destinasi['deskripsi'] ?></textarea>
+               </div>
+            </div>
+
+            <div class="row mb-3">
                <label for="foto_destinasi" class="col-sm-2 col-form-label">Foto Destinasi</label>
                <div class="col-sm-2">
                   <?php if ($destinasi['foto_destinasi'] == 'No_Image_Available.jpg') : ?>
@@ -93,6 +108,7 @@
                      <img src="/images/<?= $destinasi['slug'] ?>/<?= $destinasi['foto_destinasi'] ?>" class="img-thumbnail img_preview" alt="">
                   <?php endif; ?>
                </div>
+
                <div class="col-sm-8">
                   <div class="">
                      <input class="form-control <?= ($validation->hasError('foto_destinasi')) ? 'is-invalid' : ''; ?>" type="file" id="foto_destinasi" name="foto_destinasi" onchange="previewImg();">

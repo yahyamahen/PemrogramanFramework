@@ -40,7 +40,11 @@
                </td>
                <td class="align-middle"><?= $data['nama_destinasi'] ?></td>
                <td class="align-middle" align="center"><?= $data['kategori'] ?></td>
-               <td class="align-middle" align="right">Rp. <?= number_format($data['harga'], 0, ".", ".") ?></td>
+               <?php if ($data['harga'] <= 1) : ?>
+                  <td class="align-middle" align="center"><b>Gratis</b></td>
+               <?php else : ?>
+                  <td class="align-middle" align="right">Rp. <?= number_format($data['harga'], 0, ".", ".") ?></td>
+               <?php endif; ?>
                <td class="align-middle" align="center">
                   <a href="/destination/<?= $data['slug']; ?>" class="badge rounded-pill bg-success text-white">detail</a>
                </td>

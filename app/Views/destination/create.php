@@ -83,6 +83,13 @@
             </div>
 
             <div class="row mb-3">
+               <label for="iframe_link" class="col-sm-2 col-form-label mt-n2">Link Frame Maps</label>
+               <div class="col-sm-10">
+                  <input type="text" class="form-control <?= ($validation->hasError('iframe_link')) ? 'is-invalid' : ''; ?>" id="iframe_link" name="iframe_link" autofocus value="<?= old('iframe_link'); ?>">
+               </div>
+            </div>
+
+            <div class="row mb-3">
                <label for="deskripsi" class="col-sm-2 col-form-label mt-n2">Deskripsi</label>
                <div class="col-sm-10">
                   <textarea class="form-control" id="deskripsi" rows="3" <?= ($validation->hasError('deskripsi')) ? 'is-invalid' : ''; ?>" id="deskripsi" name="deskripsi" autofocus value="<?= old('deskripsi'); ?>"></textarea>
