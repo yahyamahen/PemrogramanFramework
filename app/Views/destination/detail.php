@@ -25,6 +25,7 @@
                         <?php endif; ?>
                      </p>
                      <p class="card-text">Kategori <b><?= $destinasi['kategori'] ?></b> </p>
+                     <p class="card-text">Alamat : <?= $destinasi['alamat_destinasi'] ?> </p>
                      <p class="card-text">Kontak <br><b><a target="_blank" href="https://wa.me/<?= $destinasi['kontak'] ?>/text=Halo%20Admin%20SIKUPAR" class="mr-4 card-link"><?= $destinasi['kontak'] ?></a></b><b><?= $destinasi['email'] ?></b></p>
                      <p class="card-text">Media Sosial <br><b class="mr-4">IG : <a class="card-link" target="_blank" href="https://instagram.com/<?= $destinasi['instagram'] ?>/"><?= $destinasi['instagram'] ?></a></b> <b>FB : <a class="card-link" target="_blank" href="https://facebook.com/<?= $destinasi['facebook'] ?>/"><?= $destinasi['facebook'] ?></a></b></p>
                      <p><?= $destinasi['deskripsi'] ?></p>
