@@ -11,7 +11,7 @@
                   <?php if ($destinasi['foto_destinasi'] == 'No_Image_Available.jpg') : ?>
                      <img class="w-100" src="/images/<?= $destinasi['foto_destinasi'] ?>" alt="<?= $destinasi['foto_destinasi'] ?>">
                   <?php else : ?>
-                     <img class="w-100" src="/images/<?= $destinasi['slug'] ?>/<?= $destinasi['foto_destinasi'] ?>" alt="images/<?= $destinasi['slug'] ?>/<?= $destinasi['foto_destinasi'] ?>">
+                     <img class="w-100" src="/images/destinasi/<?= $destinasi['slug'] ?>/<?= $destinasi['foto_destinasi'] ?>" alt="images/destinasi/<?= $destinasi['slug'] ?>/<?= $destinasi['foto_destinasi'] ?>">
                   <?php endif; ?>
                </div>
                <div class="col-md-8">

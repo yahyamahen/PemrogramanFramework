@@ -103,13 +103,13 @@ class Destination extends BaseController
          // Generate nama
          $namaFotoDestinasi = $fileFotoDestinasi->getRandomName();
          // Check directory
-         $folderPath = 'images/' . $slug;
+         $folderPath = 'images/destinasi/' . $slug;
          if (!file_exists($folderPath)) {
             mkdir($folderPath, 0777, true);
             // Move file to public/image/id;
-            $fileFotoDestinasi->move('images/' . $slug . "/", $namaFotoDestinasi);
+            $fileFotoDestinasi->move('images/destinasi/' . $slug . "/", $namaFotoDestinasi);
          } else {
-            $fileFotoDestinasi->move('images/' . $slug . "/", $namaFotoDestinasi);
+            $fileFotoDestinasi->move('images/destinasi/' . $slug . "/", $namaFotoDestinasi);
          }
       }
 
@@ -143,7 +143,7 @@ class Destination extends BaseController
             $this->delete_directory($file);
          }
          if (is_dir($target)) {
-            rmdir($target);
+            // rmdir($target);
          } else {
             return redirect()->to('/destination');
          }
@@ -157,8 +157,7 @@ class Destination extends BaseController
       $destinasi = $this->destinasiModel->find($id);
 
       if ($destinasi['foto_destinasi'] != 'No_Image_Available.jpg') {
-         $this->delete_directory('images/' . $destinasi['slug']);
-         // unlink('images/' . $destinasi['slug'] . "/" . $destinasi['foto_destinasi']);
+         unlink('images/destinasi/' . $destinasi['slug'] . "/" . $destinasi['foto_destinasi']);
       }
 
       $this->destinasiModel->delete($id);
@@ -177,9 +176,8 @@ class Destination extends BaseController
       return view('destination/update', $data);
    }
 
-   public function update_proses($id)
+   public function update_proses($id) // buanyak, nyesel buka
    {
-      // cek judul
       $destinasiLama = $this->destinasiModel->getDestinasi($this->request->getVar('slug'));
       if ($destinasiLama['nama_destinasi'] == $this->request->getVar('nama_destinasi')) {
          $rule_nama_destinasi = 'required';
@@ -205,39 +203,54 @@ class Destination extends BaseController
             ]
          ]
       ])) {
-         // $validation = \Config\Services::validation();
-         // return redirect()->to('/destinasi/update/' . $this->request->getVar('slug'))->withInput()->with('validation', $validation);
          return redirect()->to('/destinasi/update/' . $this->request->getVar('slug'))->withInput();
       }
 
-      $slug = url_title($this->request->getVar('nama_destinasi'), '-', true);
+      $id = $this->request->getVar('id');
+
+      if ($destinasiLama['nama_destinasi'] != $this->request->getVar('nama_destinasi')) {
+         $slug = url_title($this->request->getVar('nama_destinasi'), '-', true);
+      } else {
+         $slug = $this->request->getVar('slug');
+      }
+
       $fileFotoDestinasi = $this->request->getFile('foto_destinasi');
 
-      // move picture to directory
-      $folderPath = 'images/' . $slug;
+      $folderPath = 'images/destinasi/' . $slug;
       if (!file_exists($folderPath)) {
          mkdir($folderPath, 0777, true);
       }
 
-      // check if picture changed
       if ($fileFotoDestinasi->getError() == 4) {
          $namaFotoDestinasi = $this->request->getVar('foto_destinasi_lama');
          if ($this->request->getVar('slug') == $slug) {
-            echo "Data tidak dipindahkan ke slug baru";
+            echo "Data tidak dipindahkan ke folder baru";
          } else {
-            copy("images/" . $this->request->getVar('slug') . "/" . $namaFotoDestinasi, "images/" . $slug . "/" . $namaFotoDestinasi);
-            unlink('images/' . $this->request->getVar('slug') . "/" . $namaFotoDestinasi);
+            for ($i = 1; $i < 5; $i++) {
+               if (file_exists('images/destinasi/' . $this->request->getVar('slug') . "/" . $id . "_$i.jpg")) {
+                  copy("images/destinasi/" . $this->request->getVar('slug') . "/" . $id . "_$i.jpg", $folderPath . "/" . $id . "_$i.jpg");
+                  unlink("images/destinasi/" . $this->request->getVar('slug') . "/" . $id . "_$i.jpg");
+               }
+            }
+            copy("images/destinasi/" . $this->request->getVar('slug') . "/" . $namaFotoDestinasi, "images/destinasi/" . $slug . "/" . $namaFotoDestinasi);
+            unlink('images/destinasi/' . $this->request->getVar('slug') . "/" . $namaFotoDestinasi);
          }
       } else {
-         // generate random filename
          $namaFotoDestinasi = $fileFotoDestinasi->getRandomName();
-         // Move file to public/image/id;
-         $fileFotoDestinasi->move('images/' . $slug . "/", $namaFotoDestinasi);
-         // delete old photo
-         if ($this->request->getVar('foto_destinasi_lama') == 'No_Image_Available.jpg') {
+         if ($this->request->getVar('slug') == $slug) {
+            $fileFotoDestinasi->move('images/destinasi/' . $slug . "/", $namaFotoDestinasi);
          } else {
-            unlink('images/' . $this->request->getVar('slug') . "/" . $this->request->getVar('foto_destinasi_lama'));
+            $fileFotoDestinasi->move('images/destinasi/' . $slug . "/", $namaFotoDestinasi);
+            for ($i = 1; $i < 5; $i++) {
+               if (file_exists('images/destinasi/' . $this->request->getVar('slug') . "/" . $id . "_$i.jpg")) {
+                  copy("images/destinasi/" . $this->request->getVar('slug') . "/" . $id . "_$i.jpg", $folderPath . "/" . $id . "_$i.jpg");
+                  unlink("images/destinasi/" . $this->request->getVar('slug') . "/" . $id . "_$i.jpg");
+               }
+            }
          }
+
+         if (file_exists('images/destinasi/' . $this->request->getVar('slug') . '/' . $this->request->getVar('foto_destinasi_lama')))
+            unlink('images/destinasi/' . $this->request->getVar('slug') . "/" . $this->request->getVar('foto_destinasi_lama'));
       }
 
       $this->destinasiModel->save(
@@ -260,6 +273,42 @@ class Destination extends BaseController
       );
       session()->setFlashdata('pesan', 'Data berhasil diubah');
 
+      return redirect()->to('/destination');
+   }
+
+   public function addImage()
+   {
+      $destinasi = $this->destinasiModel->getDestinasi($this->request->getVar('slug'));
+      $id = $destinasi['id'];
+      $slug = $destinasi['slug'];
+      $no_foto = $this->request->getVar('no_foto');
+
+      if (!$this->validate([
+         'upload_foto' => [
+            'rules' => 'max_size[upload_foto, 4096]|is_image[upload_foto]|mime_in[upload_foto,image/jpg,image/png,image/jpeg]',
+            'errors' => [
+               // 'uploaded' => 'Pilih foto destinasi terlebih dahulu',
+               'max_size' => 'Ukuran gambar melebihi 4096kb',
+               'is_image' => 'File yang diupload bukan gambar',
+               'mime_in' => 'File yang diupload harus gambar'
+            ]
+         ]
+      ])) {
+         return redirect()->to('/destinasi/index/');
+      }
+
+      $fileUploadFoto = $this->request->getFile('upload_foto');
+
+      $tmpName = $fileUploadFoto->getTempName();
+      $folderPath = 'images/destinasi/' . $slug;
+
+      if (!$fileUploadFoto->getError() == 4) {
+         $fileName = "$id" . "_$no_foto.jpg";
+         copy($tmpName, "images/destinasi/" . $slug . "/" . $fileName);
+         unlink($tmpName);
+      }
+
+      session()->setFlashdata('pesan', 'Gambar berhasil diupload');
       return redirect()->to('/destination');
    }
 }

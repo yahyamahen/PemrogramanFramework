@@ -7,6 +7,7 @@
          <h2 class="my-3">Ubah Data Destinasi</h2>
          <form action="/destination/update_proses/<?= $destinasi['id']; ?>" method="POST" enctype="multipart/form-data">
             <?= csrf_field(); ?>
+            <input type="hidden" name="id" value="<?= $destinasi['id']; ?>">
             <input type="hidden" name="slug" value="<?= $destinasi['slug']; ?>">
             <input type="hidden" name="foto_destinasi_lama" value="<?= $destinasi['foto_destinasi']; ?>">
             <div class="row mb-3">
@@ -103,9 +104,9 @@
                <label for="foto_destinasi" class="col-sm-2 col-form-label">Foto Destinasi</label>
                <div class="col-sm-2">
                   <?php if ($destinasi['foto_destinasi'] == 'No_Image_Available.jpg') : ?>
-                     <img src="/images/No_Image_Available.jpg" class="img-thumbnail img_preview" alt="">
+                     <img src="/images/<?= $destinasi['foto_destinasi'] ?>" class="img-thumbnail img_preview" alt="">
                   <?php else : ?>
-                     <img src="/images/<?= $destinasi['slug'] ?>/<?= $destinasi['foto_destinasi'] ?>" class="img-thumbnail img_preview" alt="">
+                     <img src="/images/destinasi/<?= $destinasi['slug'] ?>/<?= $destinasi['foto_destinasi'] ?>" class="img-thumbnail img_preview" alt="">
                   <?php endif; ?>
                </div>
 
