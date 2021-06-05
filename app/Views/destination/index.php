@@ -8,119 +8,125 @@
    </div>
 </div>
 
-<h1 class="mt-2">Daftar Destinasi</h1>
-<?php if (session()->getFlashdata('pesan')) : ?>
-   <div class="alert alert-success">
-      <?= session()->getFlashdata('pesan'); ?>
-   </div>
-<?php endif; ?>
-<div class="table-responsive">
-   <table class="table" id="myTable">
-      <thead>
-         <tr class="text-center">
-            <th scope="col" width="2%">No.</th>
-            <th scope="col" width="8%"></th>
-            <th scope="col" width="40%">Nama Destinasi</th>
-            <th scope="col" width="5%">Kategori</th>
-            <th scope="col" width="15%">Harga</th>
-            <th scope="col" width="15%">Aksi</th>
-         </tr>
-      </thead>
-      <tbody>
-         <?php $no = 1;
-         foreach ($destinasi as $data) : ?>
-            <tr style="vertical-align: middle;">
-               <th class="align-middle" class="text-center" scope="row"><?= $no; ?></th>
-               <td class="align-middle">
-                  <?php if ($data['foto_destinasi'] == 'No_Image_Available.jpg') : ?>
-                     <img style="width:100%;" src="images/<?= $data['foto_destinasi'] ?>" alt="<?= $data['foto_destinasi'] ?>">
-                  <?php else : ?>
-                     <img style="width:100%;" src="images/destinasi/<?= $data['slug'] ?>/<?= $data['foto_destinasi'] ?>" alt="">
-                  <?php endif; ?>
-               </td>
-               <td class="align-middle"><?= $data['nama_destinasi'] ?></td>
-               <td class="align-middle" align="center"><?= $data['kategori'] ?></td>
-               <?php if ($data['harga'] <= 1) : ?>
-                  <td class="align-middle" align="center"><b>Gratis</b></td>
-               <?php else : ?>
-                  <td class="align-middle" align="right">Rp. <?= number_format($data['harga'], 0, ".", ".") ?></td>
-               <?php endif; ?>
-               <td class="align-middle" align="center">
-                  <a href="/destination/add-image" class="badge rounded-pill bg-secondary text-white tombolTambahGambar" data-toggle="modal" data-target="#formModal-input-gambar" data-id="<?= $data['id']; ?>" data-slug="<?= $data['slug'] ?>" data-nama_destinasi="<?= $data['nama_destinasi'] ?>" data-kategori="<?= $data['kategori']; ?>">Image</a>
-                  <a href="/destination/<?= $data['slug']; ?>" class="badge rounded-pill bg-success text-white">detail</a>
-               </td>
-            </tr>
-            <div class="modal fade" id="formModal-input-gambar" tabhome="-1" aria-labelledby="judulModal" aria-hidden="true">
-               <div class="modal-dialog">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h5 class="modal-title" id="judulModal">Input Gambar</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                        </button>
-                     </div>
-                     <div class="modal-body">
-                        <form action="destination/addImage" method="post" enctype="multipart/form-data">
-                           <input type="hidden" name="id" id="id">
-                           <input type="hidden" name="slug" id="slug">
-                           <input type="hidden" name="nama_destinasi" id="nama_destinasi">
-                           <input type="hidden" name="kategori" id="kategori">
+<div class="col-xl-12 col-lg-7 mt-4">
+   <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+         <h3 class="m-0 font-weight-bold text-success">Daftar Destinasi</h3>
+      </div>
+      <?php if (session()->getFlashdata('pesan')) : ?>
+         <div class="alert alert-success">
+            <?= session()->getFlashdata('pesan'); ?>
+         </div>
+      <?php endif; ?>
+      <div class="card-body table-responsive">
+         <table class="table" id="myTable">
+            <thead>
+               <tr class="text-center">
+                  <th scope="col" width="2%">No.</th>
+                  <th scope="col" width="8%"></th>
+                  <th scope="col" width="40%">Nama Destinasi</th>
+                  <th scope="col" width="5%">Kategori</th>
+                  <th scope="col" width="15%">Harga</th>
+                  <th scope="col" width="15%">Aksi</th>
+               </tr>
+            </thead>
+            <tbody>
+               <?php $no = 1;
+               foreach ($destinasi as $data) : ?>
+                  <tr style="vertical-align: middle;">
+                     <th class="align-middle" class="text-center" scope="row"><?= $no; ?></th>
+                     <td class="align-middle">
+                        <?php if ($data['foto_destinasi'] == 'No_Image_Available.jpg') : ?>
+                           <img style="width:100%;" src="images/<?= $data['foto_destinasi'] ?>" alt="<?= $data['foto_destinasi'] ?>">
+                        <?php else : ?>
+                           <img style="width:100%;" src="images/destinasi/<?= $data['slug'] ?>/<?= $data['foto_destinasi'] ?>" alt="">
+                        <?php endif; ?>
+                     </td>
+                     <td class="align-middle"><?= $data['nama_destinasi'] ?></td>
+                     <td class="align-middle" align="center"><?= $data['kategori'] ?></td>
+                     <?php if ($data['harga'] <= 1) : ?>
+                        <td class="align-middle" align="center"><b>Gratis</b></td>
+                     <?php else : ?>
+                        <td class="align-middle" align="right">Rp. <?= number_format($data['harga'], 0, ".", ".") ?></td>
+                     <?php endif; ?>
+                     <td class="align-middle" align="center">
+                        <a href="/destination/add-image" class="badge rounded-pill bg-secondary text-white tombolTambahGambar" data-toggle="modal" data-target="#formModal-input-gambar" data-id="<?= $data['id']; ?>" data-slug="<?= $data['slug'] ?>" data-nama_destinasi="<?= $data['nama_destinasi'] ?>" data-kategori="<?= $data['kategori']; ?>">Image</a>
+                        <a href="/destination/<?= $data['slug']; ?>" class="badge rounded-pill bg-success text-white">detail</a>
+                     </td>
+                  </tr>
+                  <div class="modal fade" id="formModal-input-gambar" tabhome="-1" aria-labelledby="judulModal" aria-hidden="true">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <h5 class="modal-title" id="judulModal">Input Gambar</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                              </button>
+                           </div>
+                           <div class="modal-body">
+                              <form action="destination/addImage" method="post" enctype="multipart/form-data">
+                                 <input type="hidden" name="id" id="id">
+                                 <input type="hidden" name="slug" id="slug">
+                                 <input type="hidden" name="nama_destinasi" id="nama_destinasi">
+                                 <input type="hidden" name="kategori" id="kategori">
 
-                           <div class="form-group">
-                              <label for="id">ID</label>
-                              <div class="input-group">
-                                 <input type="text" class="form-control mr-3 w-25" id="id" name="id" placeholder="ID" disabled>
-                                 <input type="text" class="form-control w-50" id="nama_destinasi" name="nama_destinasi" placeholder="Nama Destinasi" disabled>
-                              </div>
-                           </div>
+                                 <div class="form-group">
+                                    <label for="id">ID</label>
+                                    <div class="input-group">
+                                       <input type="text" class="form-control mr-3 w-25" id="id" name="id" placeholder="ID" disabled>
+                                       <input type="text" class="form-control w-50" id="nama_destinasi" name="nama_destinasi" placeholder="Nama Destinasi" disabled>
+                                    </div>
+                                 </div>
 
-                           <div class="form-group">
-                              <label for="kategori">Kategori</label>
-                              <input type="text" class="form-control" id="kategori" name="kategori" placeholder="Kategori" disabled>
-                           </div>
+                                 <div class="form-group">
+                                    <label for="kategori">Kategori</label>
+                                    <input type="text" class="form-control" id="kategori" name="kategori" placeholder="Kategori" disabled>
+                                 </div>
 
-                           <div class="list-gambar d-flex list-inline justify-content-center flex-row">
-                              <?php for ($i = 1; $i < 5; $i++) : ?>
-                                 <p class="text-center d-inline align-self-center"><?= $i; ?></p>
-                                 <li class="d-flex justify-content-center flex-column overflow-hidden" style="margin:auto; width: 5em; height:5em;">
-                                    <?php
-                                    $path = "images/destinasi/" . $data['slug'] . "/" . $data['id'] . "_$i.jpg";
-                                    if (!file_exists($path)) : ?>
-                                       <img style="width: 5em;" src="images/No_Image_Available.jpg">
-                                    <?php else : ?>
-                                       <img style="width: 5em;" class="img<?= $i; ?>" src="">
-                                    <?php endif; ?>
-                                 </li>
-                              <?php endfor; ?>
-                           </div>
-                           <div class="form-group mt-4">
-                              <label for="no_foto">Update Gambar ke 1-4</label>
-                              <select class="form-control" id="no_foto" name="no_foto">
-                                 <option value="1">1</option>
-                                 <option value="2">2</option>
-                                 <option value="3">3</option>
-                                 <option value="4">4</option>
-                              </select>
-                           </div>
+                                 <div class="list-gambar d-flex list-inline justify-content-center flex-row">
+                                    <?php for ($i = 1; $i < 5; $i++) : ?>
+                                       <p class="text-center d-inline align-self-center"><?= $i; ?></p>
+                                       <li class="d-flex justify-content-center flex-column overflow-hidden" style="margin:auto; width: 5em; height:5em;">
+                                          <?php
+                                          $path = "images/destinasi/" . $data['slug'] . "/" . $data['id'] . "_$i.jpg";
+                                          if (!file_exists($path)) : ?>
+                                             <img style="width: 5em;" src="images/No_Image_Available.jpg">
+                                          <?php else : ?>
+                                             <img style="width: 5em;" class="img<?= $i; ?>" src="">
+                                          <?php endif; ?>
+                                       </li>
+                                    <?php endfor; ?>
+                                 </div>
+                                 <div class="form-group mt-4">
+                                    <label for="no_foto">Update Gambar ke 1-4</label>
+                                    <select class="form-control" id="no_foto" name="no_foto">
+                                       <option value="1">1</option>
+                                       <option value="2">2</option>
+                                       <option value="3">3</option>
+                                       <option value="4">4</option>
+                                    </select>
+                                 </div>
 
-                           <div class="form-group m-auto">
-                              <label for="upload_foto" class=" d-block">Masukan Gambar</label>
-                              <input type="file" class="" id="upload_foto" name="upload_foto" placeholder="Upload Foto">
-                           </div>
+                                 <div class="form-group m-auto">
+                                    <label for="upload_foto" class=" d-block">Masukan Gambar</label>
+                                    <input type="file" class="" id="upload_foto" name="upload_foto" placeholder="Upload Foto">
+                                 </div>
 
-                           <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="submit" name="submitGambar" class="btn btn-primary">Tambah</button>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" name="submitGambar" class="btn btn-primary">Tambah</button>
+                                 </div>
+                              </form>
                            </div>
-                        </form>
+                        </div>
                      </div>
                   </div>
-               </div>
-            </div>
-         <?php $no++;
-         endforeach; ?>
-      </tbody>
-   </table>
+               <?php $no++;
+               endforeach; ?>
+            </tbody>
+         </table>
+      </div>
+   </div>
 </div>
 
 <?= $this->endSection(); ?>

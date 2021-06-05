@@ -1,10 +1,12 @@
 <?= $this->extend('destination/layout/template') ?>
 
 <?= $this->section('content') ?>
-<div class="container">
-   <div class="row">
-      <div class="col-md-8">
-         <h2 class="my-3">Tambah Destinasi</h2>
+<div class="col-xl-9 col-lg-7 mt-4">
+   <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+         <h3 class="m-0 font-weight-bold text-success">Tambah Destinasi</h3>
+      </div>
+      <div class="card-body">
          <form action="/destination/save" method="POST" enctype="multipart/form-data">
             <?= csrf_field(); ?>
             <div class="row mb-3">
@@ -38,9 +40,7 @@
             </div>
 
             <div class="row mb-3">
-               <div class="col-md-2">
-                  <label for="kontak" class="col-sm-2 col-form-label ml-n3">Kontak</label>
-               </div>
+               <label for="kontak" class="col-sm-2 col-form-label">Kontak</label>
                <div class="col-md-5 input-group mb-3">
                   <div class="input-group-append">
                      <span class="input-group-text" id="basic-addon2">+62</span>
@@ -71,9 +71,7 @@
             </div>
 
             <div class="row mb-3">
-               <div class="col-md-2">
-                  <label class="col-sm-2 col-form-label mt-n2 ml-n3">Altidude, Longtitude</label>
-               </div>
+               <label class="col-sm-2 col-form-label mt-n2 ">Altidude, Longtitude</label>
                <div class="col-md-5">
                   <input type="text" placeholder="Altidude" class="form-control <?= ($validation->hasError('altitude')) ? 'is-invalid' : ''; ?>" id="altitude" name="altitude" autofocus value="<?= old('altitude'); ?>">
                </div>
@@ -115,4 +113,5 @@
       </div>
    </div>
 </div>
+
 <?= $this->endSection() ?>

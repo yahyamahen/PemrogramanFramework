@@ -2,9 +2,11 @@
 <html lang="en">
 
 <head>
-   <meta charset="UTF-8">
+   <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="">
+   <meta name="author" content="">
    <title><?= $title ?></title>
 
    <!-- Bootstrap CSS -->
@@ -26,6 +28,7 @@
    <link rel="stylesheet" href="<?= base_url('vendor/fontawesome-free/css/all.min.css') ?>">
 
    <!-- Custom styles for this template-->
+   <link rel="stylesheet" href="<?= base_url('css/sb-admin-2.min.css') ?>">
    <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
 
    <?= $this->renderSection('style') ?>
@@ -53,35 +56,11 @@
 
 <body>
 
-   <?= $this->include('destination/layout/navbar') ?>
+   <?= $this->include('home/layout/navbar') ?>
 
-   <div class="container-fluid">
-      <div class="row">
-         <?= $this->include('destination/layout/sidebar') ?>
-         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-            <?= $this->renderSection('content'); ?>
-         </main>
-      </div>
-   </div>
+   <?= $this->renderSection('content'); ?>
 
-   <!-- Logout Modal-->
-   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-         <div class="modal-content">
-            <div class="modal-header">
-               <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-               <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-               </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-               <a class="btn btn-success" href="<?= base_url('logout') ?>">Logout</a>
-            </div>
-         </div>
-      </div>
-   </div>
+   <?= $this->include('home/layout/footer') ?>
 
    <!-- Javascript -->
    <script type="text/javascript" src="<?= base_url('js/js/jquery-3.5.1.js') ?>"></script>
@@ -104,7 +83,6 @@
    <script type="text/javascript" src="<?= base_url('js/js/webcodecamjquery.js') ?>"></script>
    <script type="text/javascript" src="<?= base_url('js/js/main.js') ?>"></script>
    <script type="text/javascript" src="<?= base_url('js/script.js') ?>"></script>
-
    <script src="<?= base_url('vendor/jquery-easing/jquery.easing.min.js') ?>"></script>
 
    <!-- Custom scripts for all pages-->
@@ -120,23 +98,6 @@
       $(document).ready(function() {
          $('#myTable').DataTable();
       });
-   </script>
-
-   <script type="text/javascript">
-      function previewImg() {
-         const foto_destinasi = document.querySelector('#foto_destinasi');
-         // const foto_destinasi_label = document.querySelector('#custom_file_label');
-         const img_preview = document.querySelector('.img_preview');
-
-         // foto_destinasi_label.textContent = foto_destinasi.files[0].name;
-
-         const file_foto_destinasi = new FileReader();
-         file_foto_destinasi.readAsDataURL(foto_destinasi.files[0]);
-
-         file_foto_destinasi.onload = function(e) {
-            img_preview.src = e.target.result;
-         }
-      }
    </script>
 
    <?= $this->renderSection('script') ?>

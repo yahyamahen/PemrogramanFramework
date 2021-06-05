@@ -6,11 +6,25 @@ class Home extends BaseController
 {
 	public function index()
 	{
-		return view('welcome_message');
+		$data = [
+			'title' => 'Home | SIKUPAR',
+		];
+		return view('home/index', $data);
 	}
 
-	public function coba()
+	public function list()
 	{
-		echo "Hello World saya $this->nama!";
+		$data = [
+			'title' => 'Destinations | SIKUPAR'
+		];
+		return view('home/list', $data);
+	}
+
+	public function meet()
+	{
+		$data = [
+			'title' => 'Destinations | SIKUPAR'
+		];
+		return view('home/meet', $data);
 	}
 }
