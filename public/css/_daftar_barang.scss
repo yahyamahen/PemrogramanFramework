@@ -1,0 +1,18 @@
+#results {
+   width: 94%;
+   height: 84%;
+   margin-top: 1.6rem;
+   border: 1px solid;
+   background: #ccc;
+}
+
+.floatingButton {
+   border-radius: 500px;
+   font-size: 1.3em;
+   padding: 0.5em 1em 0.5em 1em;
+   font-weight: 700;
+   position: fixed;
+   bottom: 2rem;
+   right: 2rem;
+   z-index: 999;
+}

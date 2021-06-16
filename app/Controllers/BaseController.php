@@ -27,7 +27,7 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = [];
+	protected $helpers = ['auth'];
 
 	/**
 	 * Constructor.
@@ -46,7 +46,6 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// E.g.: $this->session = \Config\Services::session();
 		session();
-		$this->nama = "Yahya";
 		$this->dateNow = date('d-M-Y', time());
 		// ------ Access DB to all controller
 		// $this->produkModul = new \App\Models\ProdukModel(); 

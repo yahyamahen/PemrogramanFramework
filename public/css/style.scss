@@ -1,0 +1,57 @@
+@import "login";
+@import "register";
+@import "daftar_barang";
+@import "detail_barang";
+@import "tambah_barang";
+@import "scan_barang";
+
+.bd-placeholder-img {
+   font-size: 1.125rem;
+   text-anchor: middle;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
+@media (min-width: 768px) {
+   .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+   }
+}
+
+body {
+   .navbar-top {
+      background-color: #0b224e;
+   }
+
+   .profile {
+      border-bottom: 1px solid #999999;
+      img {
+         align-self: center;
+         width: 5em;
+      }
+      a,
+      p {
+         align-self: center;
+      }
+   }
+   .quantity-field {
+      &::-webkit-inner-spin-button,
+      ::-webkit-outer-spin-button {
+         appearance: none;
+      }
+   }
+}
+
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+@media screen and (min-width: 480px) {
+   .dropdown-list {
+      margin-right: 10em;
+   }
+}
